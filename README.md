@@ -4,9 +4,11 @@
 
 零外部依赖，仅使用 Python 标准库。
 
-## 下载
+## 安装
 
-从 [GitHub Releases](https://github.com/ChaoXu1997/yzu-wlan/releases) 下载对应平台的二进制文件：
+### 方式一：下载二进制（推荐）
+
+从 [GitHub Releases](https://github.com/ChaoXu1997/yzu-wlan/releases) 下载对应平台的预编译文件，无需安装 Python：
 
 | 平台 | 文件 |
 |------|------|
@@ -14,16 +16,18 @@
 | macOS (Apple Silicon) | `yzu-wlan-*-macos-arm64` |
 | Windows (x86_64) | `yzu-wlan-*-windows-amd64.exe` |
 
-Linux/macOS 下载后添加执行权限：
+Linux / macOS：
 
 ```bash
 chmod +x yzu-wlan-*
 sudo mv yzu-wlan-* /usr/local/bin/yzu-wlan
 ```
 
-Windows 直接运行 `.exe` 文件即可。
+Windows：直接运行 `.exe` 文件。
 
-## 安装
+### 方式二：从源码安装
+
+需要 Python >= 3.8：
 
 ```bash
 pip install --user git+https://github.com/ChaoXu1997/yzu-wlan.git
@@ -91,7 +95,7 @@ journalctl --user -u yzu-wlan.service -f
 
 ## 依赖
 
-无。需要 Python >= 3.8。
+无外部依赖。从源码安装需要 Python >= 3.8，下载二进制无需任何运行时。
 
 ## 安全说明
 
