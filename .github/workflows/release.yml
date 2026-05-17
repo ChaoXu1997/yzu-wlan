@@ -1,0 +1,60 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            platform: linux
+            arch: amd64
+          - os: macos-latest
+            platform: macos
+            arch: arm64
+          - os: windows-latest
+            platform: windows
+            arch: amd64
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: pip install pyinstaller
+
+      - name: Get version
+        id: version
+        shell: bash
+        run: |
+          VERSION=$(python -c "import tomllib; print(tomllib.open('pyproject.toml')['project']['version'])")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Build
+        shell: bash
+        run: |
+          pyinstaller --onefile \
+            --paths src \
+            --hidden-import yzu_wlan \
+            --hidden-import yzu_wlan.cli \
+            --hidden-import yzu_wlan.config \
+            --hidden-import yzu_wlan.daemon \
+            --hidden-import yzu_wlan.portal \
+            --name yzu-wlan-${{ steps.version.outputs.version }}-${{ matrix.platform }}-${{ matrix.arch }} \
+            src/yzu_wlan/cli.py
+
+      - name: Upload release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/yzu-wlan-*

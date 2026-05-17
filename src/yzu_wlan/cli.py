@@ -40,3 +40,7 @@ def main():
         run_daemon(cfg, once=not args.daemon)
     except KeyboardInterrupt:
         sys.exit(0)
+
+
+if __name__ == "__main__":
+    main()

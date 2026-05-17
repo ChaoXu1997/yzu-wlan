@@ -4,6 +4,25 @@
 
 零外部依赖，仅使用 Python 标准库。
 
+## 下载
+
+从 [GitHub Releases](https://github.com/ChaoXu1997/yzu-wlan/releases) 下载对应平台的二进制文件：
+
+| 平台 | 文件 |
+|------|------|
+| Linux (x86_64) | `yzu-wlan-*-linux-amd64` |
+| macOS (Apple Silicon) | `yzu-wlan-*-macos-arm64` |
+| Windows (x86_64) | `yzu-wlan-*-windows-amd64.exe` |
+
+Linux/macOS 下载后添加执行权限：
+
+```bash
+chmod +x yzu-wlan-*
+sudo mv yzu-wlan-* /usr/local/bin/yzu-wlan
+```
+
+Windows 直接运行 `.exe` 文件即可。
+
 ## 安装
 
 ```bash
