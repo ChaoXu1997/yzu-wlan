@@ -74,6 +74,14 @@ journalctl --user -u yzu-wlan.service -f
 
 无。需要 Python >= 3.8。
 
+## 安全说明
+
+- 调用的是 eportal 官方登录接口（`/eportal/InterFace.do?method=login`），与浏览器手动登录完全一致
+- 使用用户自己的账号密码，不绕过任何认证机制
+- 不涉及漏洞利用、暴力破解、端口扫描等行为
+- 每 60 秒仅发送一次轻量级连通性检测（HTTP 204），已联网时不会触发登录请求
+- 对校园网服务器和其他用户零影响
+
 ## 致谢
 
 登录逻辑参考了 [luoboQAQ/yzu-campusnet-login](https://github.com/luoboQAQ/yzu-campusnet-login)（Go 版本）。
