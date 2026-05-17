@@ -38,7 +38,7 @@ jobs:
         id: version
         shell: bash
         run: |
-          VERSION=$(python -c "import tomllib; print(tomllib.open('pyproject.toml')['project']['version'])")
+          VERSION=$(python -c "import tomllib; f=open('pyproject.toml','rb'); print(tomllib.load(f)['project']['version'])")
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Build
